@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import com.revrobotics.*;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * This is a demo program showing the use of the DifferentialDrive class. Runs the motors with
@@ -17,10 +19,10 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
  */
 public class Robot extends TimedRobot {
   //Define every motor to its correct channel. 
-  private final PWMSparkMax m_leftMotor1 = new PWMSparkMax(18);
-  private final PWMSparkMax m_leftMotor2 = new PWMSparkMax(19);
-  private final PWMSparkMax m_rightMotor1 = new PWMSparkMax(16);
-  private final PWMSparkMax m_rightMotor2 = new PWMSparkMax(17);
+  private final CANSparkMax m_leftMotor1 = new CANSparkMax(1, MotorType.kBrushless);
+  private final CANSparkMax m_leftMotor2 = new CANSparkMax(4, MotorType.kBrushless);
+  private final CANSparkMax m_rightMotor1 = new CANSparkMax(2, MotorType.kBrushless);
+  private final CANSparkMax m_rightMotor2 = new CANSparkMax(3, MotorType.kBrushless);
 
   //Groups all left motors together (2). 
   private final MotorControllerGroup m_leftMotors = new MotorControllerGroup(m_leftMotor1, m_leftMotor2);
@@ -43,7 +45,7 @@ public class Robot extends TimedRobot {
     // Drive with arcade drive.
     // That means that the Y axis drives forward
     // and backward, and the X turns left and right.
-    
+
     m_robotDrive.arcadeDrive(-m_controller.getLeftY(), -m_controller.getLeftX());
   }
 }
